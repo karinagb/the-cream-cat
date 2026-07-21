@@ -1,0 +1,21 @@
+export default function Promotions(props) {
+  const promoPrice = (props.price * 0.75).toFixed(2);
+
+  return (
+    <div className='promo-content'>
+      <div className='promo-info'>
+        <h1>Promotions of the month!</h1>
+        <h3>{props.name}</h3>
+
+        <div className='promo-buy'>
+          <p className='promo-price'>${promoPrice}</p>
+          <button className='cart-button' onClick={() => props.addToCart(props.iceCream)}>
+            <img className='cart-icon' src='/assets/cart.svg' alt='cartLogo' />
+          </button>
+        </div>
+      </div>
+
+      <img className='promo-ice-cream-img' src={props.image} alt={props.name} />
+    </div>
+  );
+}

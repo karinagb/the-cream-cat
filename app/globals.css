@@ -1,26 +1,892 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  margin: 0 10px;
+  padding: 0;
+  background: #fdf7ef;
+  font-family: system-ui, Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* NAV */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.2rem 2rem;
+
+  border-bottom: 1px solid rgba(61, 43, 31, 0.1);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fdf7ef;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* NAV LINKS (Home, Menu, Contact) */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-decoration: none;
+  color: #3d2b1f;
+  font-weight: 600;
+
+  position: relative;
+}
+
+/* hover color */
+.nav-link:hover {
+  color: #f29c38;
+}
+
+/* subtle underline animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 0%;
+  height: 2px;
+  background: #f29c38;
+
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+
+  object-fit: contain;
+
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* CART LINK */
+.nav-cart {
+  position: relative; 
+  display: flex;
+  align-items: center;
+}
+
+
+.cart-icon {
+  width: 20px !important;
+  height: 20px !important;
+
+  object-fit: contain;
+  display: block;
+}
+
+.nav-link:last-of-type {
+  margin-right: 0;
+}
+.nav-cart-number {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+
+  background-color: orange; /* or #ff8c00 / var(--primary) */
+  color: white;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* NAV LINKS */
+  .nav-link {
+    font-size: 0.95rem;
+  }
+
+  /* group links if they are not already wrapped */
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-logo {
+    height: 32px;
+  }
+
+}
+
+/* HOME  */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  padding: 2rem;
+
+  background: #fdf7ef;
+  min-height: 100vh;
+}
+
+/* HERO  */
+.hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 2rem;
+  gap: 1.5rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: #3d2b1f;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.hero span {
+  color: #f29c38;
+}
+
+.hero .logo {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.hero .logo:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+/* ===================================================
+   ICE CREAM OF THE DAY
+=================================================== */
+
+.todays-ice-cream {
+  max-width: 900px;
+
+  margin: 3rem auto;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  background: #fff7ef;
+
+  border: 3px dashed #f29c38;
+  border-radius: 28px;
+
+  box-shadow: 0 12px 25px rgba(242, 156, 56, 0.15);
+}
+
+.todays-ice-cream h1 {
+  margin: 0;
+
+  color: #946749;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.todays-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.todays-ice-cream-img {
+  width: 220px;
+  height: 220px;
+
+  object-fit: contain;
+
+  transition: 0.3s;
+}
+
+.todays-content:hover .todays-ice-cream-img {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+.todays-info {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.todays-info h3 {
+  margin: 0;
+
+  font-size: 2rem;
+  color: #3d2b1f;
+}
+
+.todays-info h4 {
+  margin: 0;
+
+  color: #6b5444;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.buy {
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: #f29c38;
+}
+
+/* ===================================================
+   PROMOTION
+=================================================== */
+.promo-content {
+  width: 100%;
+  max-width: 700px;
+
+  display: flex;
+  flex-direction: row;
+
+  margin: 3rem auto;
+  padding: 2rem;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(135deg, #fff8ef, #ffe8c8);
+
+  border-radius: 30px;
+}
+
+.promo-content h1 {
+  margin: 0;
+  color: #946749;
+}
+
+.promo-info {
+  position: relative;
+  max-width: 100%;
+}
+
+.promo-info h3 {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.promo-buy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.promo-price {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #f29c38;
+  margin-right: 1rem;
+}
+
+/* Decorative background image */
+.promo-ice-cream-img {
+  position: absolute;
+
+  right: -40px;
+  bottom: -20px;
+
+  width: 320px;
+
+  transform: rotate(-15deg);
+
+  pointer-events: none;
+}
+
+/* =========================
+   MOBILE (<= 600px)
+========================= */
+
+@media (max-width: 600px) {
+  /* HERO */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .hero .logo {
+    width: 200px;
+  }
+
+  /* TODAY'S ICE CREAM */
+  .todays-ice-cream {
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 20px;
+    align-items: center;
+  }
+
+  .todays-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todays-ice-cream h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .todays-ice-cream-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .todays-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  /* PROMO */
+  .promo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.2rem;
+    border-radius: 20px;
+    position: relative;
+  }
+  .promo-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .promo-buy {
+    justify-content: center;
+  }
+
+  .promo-price {
+    font-size: 2rem;
+  }
+
+  .promo-ice-cream-img {
+    position: static;
+    width: 200px;
+    margin-top: 1rem;
+    transform: rotate(-10deg);
+    opacity: 0.9;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================
+   MENU PAGE
+========================= */
+.menu {
+  min-height: 100vh;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2.5rem;
+}
+
+.menu h1 {
+  font-size: 2.2rem;
+  color: #3d2b1f;
+  margin: 0;
+  text-align: center;
+}
+
+/* =========================
+   CATEGORY BLOCKS
+========================= */
+.human-ice-cream,
+.pet-ice-cream {
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+/* Titles */
+.human-ice-cream h2,
+.pet-ice-cream h2 {
+  font-size: 1.5rem;
+  color: #3d2b1f;
+
+  margin-left: 0.5rem;
+  position: relative;
+}
+
+/* Orange underline */
+.human-ice-cream h2::after,
+.pet-ice-cream h2::after {
+  content: '';
+  display: block;
+
+  width: 45px;
+  height: 3px;
+
+  background: #f29c38;
+
+  margin-top: 0.4rem;
+  border-radius: 10px;
+}
+
+/* =========================
+   CARDS WRAP CONTAINER
+========================= */
+.ice-creams {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 1.5rem;
+
+  width: 100%;
+}
+
+/* =========================
+   ICE CREAM CARD
+========================= */
+.ice-cream {
+  width: 220px;
+
+  background: #fffaf5;
+  border: 1px solid rgba(61, 43, 31, 0.1);
+  border-radius: 16px;
+
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.ice-cream:hover {
+  transform: translateY(-5px);
+
+  border: 1px solid #f29c38;
+
+  box-shadow: 0 10px 20px rgba(242, 156, 56, 0.2);
+}
+
+/* Image */
+.ice-cream-img {
+  width: 200px;
+  height: 200px;
+
+  object-fit: contain;
+  border-radius: 16px;
+  margin-bottom: 0.8rem;
+}
+
+/* Name */
+.ice-cream h3 {
+  font-size: 1rem;
+  color: #3d2b1f;
+  margin: 0.3rem 0;
+}
+
+/* Description */
+.ice-cream h4 {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(61, 43, 31, 0.7);
+  margin: 0.2rem 0;
+}
+/* =========================
+   BUY ROW (price + cart button)
+========================= */
+.buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-top: 1rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid rgba(61, 43, 31, 0.08);
+}
+
+
+
+/* PRICE */
+.price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f29c38;
+}
+
+/* =========================
+   CART BUTTON
+========================= */
+.cart-button {
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  width: 28px;
+  height: 28px;
+
+  border-radius: 6px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* hover effect */
+.cart-button:hover {
+  background: rgba(242, 156, 56, 0.12);
+  transform: scale(1.05);
+}
+
+
+
+/* =========================
+   CONTACT PAGE WRAPPER
+========================= */
+
+.contact {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2.5rem 1.5rem;
+  gap: 2.5rem;
+
+  background: #fdf7ef;
+  color: #3d2b1f;
+}
+
+.contact h1 {
+  font-size: 2.2rem;
+  color: #3d2b1f;
+  margin: 0;
+}
+
+.location {
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 2rem;
+
+  background: linear-gradient(135deg, #fff7ed, #ffe6c7);
+
+  border-radius: 28px;
+  border: 2px solid rgba(242, 156, 56, 0.25);
+
+  box-shadow: 0 15px 30px rgba(242, 156, 56, 0.15);
+}
+
+.contact h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #946749;
+}
+
+.location p {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  color: #6b5444;
+}
+
+/* =========================
+   SHOP IMAGE
+========================= */
+
+.shop {
+  width: 100%;
+  max-width: 650px;
+
+  border-radius: 20px;
+
+  object-fit: cover;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.shop:hover {
+  transform: scale(1.02) rotate(-0.5deg);
+  box-shadow: 0 15px 35px rgba(242, 156, 56, 0.2);
+}
+
+.contact form {
+  width: 100%;
+  max-width: 550px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 2rem;
+
+  background: #fffaf5;
+
+  border-radius: 24px;
+  border: 2px solid rgba(242, 156, 56, 0.25);
+
+  box-shadow: 0 12px 25px rgba(242, 156, 56, 0.12);
+  align-items: center;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.contact input,
+.contact textarea {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+
+  border-radius: 14px;
+
+  border: 2px solid #f3d8b2;
+
+  font-size: 1rem;
+  font-family: inherit;
+
+  color: #3d2b1f;
+
+  outline: none;
+
+  transition: 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+.contact textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-color: #f29c38;
+  box-shadow: 0 0 0 4px rgba(242, 156, 56, 0.15);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.contact button {
+  padding: 0.9rem 1.4rem;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #f29c38;
+  color: white;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.contact button:hover {
+  transform: translateY(-2px);
+  background: #e88c1f;
+}
+
+.contact button:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   ERROR STATE
+========================= */
+
+.contact h3 {
+  font-size: 2rem;
+  color: #f29c38;
+}
+
+
+/* CART */
+
+.cart {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2.5rem 1.5rem;
+  gap: 2.5rem;
+
+  background: #fdf7ef;
+  color: #3d2b1f;
+}
+
+.cart h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #3d2b1f;
+}
+
+/* list container */
+.cart ul {
+  width: 100%;
+  max-width: 500px;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* each item */
+.cart li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 14px;
+
+  background: white;
+  border-radius: 10px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.name {
+  font-size: 1rem;
+}
+
+.total {
+  width: 100%;
+  max-width: 500px;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  color: #3d2b1f;
+
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(61, 43, 31, 0.2);
+}
+
+/* checkout button */
+.cart button {
+  width: 100%;
+  max-width: 500px;
+
+  padding: 12px;
+
+  background-color: orange;
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.cart button:hover {
+  background-color: darkorange;
+  transform: translateY(-1px);
 }
