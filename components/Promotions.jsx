@@ -1,3 +1,4 @@
+import { basePath } from "../lib/siteConfig"
 export default function Promotions(props) {
   const promoPrice = (props.price * 0.75).toFixed(2);
 
@@ -10,7 +11,7 @@ export default function Promotions(props) {
         <div className='promo-buy'>
           <p className='promo-price'>${promoPrice}</p>
           <button className='cart-button' onClick={() => props.addToCart(props.iceCream)}>
-            <img className='cart-icon' src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/cart.svg`} alt='cartLogo' />
+            <img className='cart-icon' src={`${basePath}/assets/cart.svg`} alt='cartLogo' />
           </button>
         </div>
       </div>

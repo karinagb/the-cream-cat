@@ -1,3 +1,5 @@
+import { basePath } from '../lib/siteConfig'
+
 export default function IceCream(props) {
   return (
     <div className='ice-cream'>
@@ -8,7 +10,7 @@ export default function IceCream(props) {
         <p className='price'>${props.price}</p>
 
         <button onClick={() => props.addToCart(props.iceCream)} className='cart-button'>
-          <img className='cart-icon' src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/cart.svg`} alt='cartLogo' />
+          <img className='cart-icon' src={`${basePath}/assets/cart.svg`} alt='cartLogo' />
         </button>
       </div>
     </div>

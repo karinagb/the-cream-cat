@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { CartContext } from './context';
 import { useContext } from 'react';
+import { basePath } from '../lib/siteConfig'
 
 export default function Header() {
   const [cart] = useContext(CartContext);
@@ -10,7 +11,7 @@ export default function Header() {
     <nav className='nav'>
       <Link href='/' className='nav-link'>
         <img
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/logo.png`}
+          src={`${basePath}/assets/logo.png`}
           alt='The Cream Cat'
           className='nav-logo'
         />
@@ -23,7 +24,7 @@ export default function Header() {
         Contact
       </Link>
       <Link href='/cart' className='nav-cart'>
-        <img className='cart-icon' src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/cart.svg`} alt='cart' />
+        <img className='cart-icon' src={`${basePath}/assets/cart.svg`} alt='cart' />
         <span className='nav-cart-number'>{cart.length}</span>
       </Link>
     </nav>

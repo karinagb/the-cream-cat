@@ -5,6 +5,7 @@ import Promotions from '../components/Promotions';
 import { useState, useEffect } from 'react';
 import { CartContext } from '../components/context';
 import { useContext } from 'react';
+import { basePath } from '../lib/siteConfig'
 
 export default function Home() {
   const [iceCreams, setIceCreams] = useState([]);
@@ -40,7 +41,7 @@ export default function Home() {
         <>
           <TodaysIceCream
             key={todaysIceCream.id}
-            image={`/assets/ice-creams/${todaysIceCream.image}`}
+            image={`${basePath}/assets/ice-creams/${todaysIceCream.image}`}
             name={todaysIceCream.name}
             description={todaysIceCream.description}
             price={todaysIceCream.price}
@@ -49,7 +50,7 @@ export default function Home() {
           />
           <Promotions
             key={promoIceCream.id}
-            image={`/assets/ice-creams/${promoIceCream.image}`}
+            image={`${basePath}/assets/ice-creams/${promoIceCream.image}`}
             name={promoIceCream.name}
             price={promoIceCream.price}
             addToCart={addToCart}

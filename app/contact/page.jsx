@@ -1,5 +1,5 @@
 'use client';
-
+import { basePath } from '../../lib/siteConfig'
 import { useState } from 'react';
 
 export default function Contact() {
@@ -21,7 +21,7 @@ export default function Contact() {
 
       <div className='location'>
         <h2>Visit us in our shop!</h2>
-        <img className='shop' src={`${process.env.NEXT_PUBLIC_BASE_PATH}/assets/shop.png`} alt='shop' />
+        <img className='shop' src={`${basePath}/assets/shop.png`} alt='shop' />
         <p>Location: 412 Pine Street, Capitol Hill, Seattle, WA 98101.</p>
       </div>
 

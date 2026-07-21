@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import IceCream from '../../components/IceCream';
 import { CartContext } from '../../components/context';
 import { useContext } from 'react';
+import { basePath } from '../../lib/siteConfig'
 
 export default function Menu() {
   const [iceCreams, setIceCreams] = useState([]);
@@ -35,7 +36,7 @@ export default function Menu() {
             .map((iceCream) => (
               <IceCream
                 key={iceCream.id}
-                image={`/assets/ice-creams/${iceCream.image}`}
+                image={`${basePath}/assets/ice-creams/${iceCream.image}`}
                 name={iceCream.name}
                 description={iceCream.description}
                 price={iceCream.price}
@@ -54,7 +55,7 @@ export default function Menu() {
             .map((iceCream) => (
               <IceCream
                 key={iceCream.id}
-                image={`/assets/ice-creams/${iceCream.image}`}
+                image={`${basePath}/assets/ice-creams/${iceCream.image}`}
                 name={iceCream.name}
                 description={iceCream.description}
                 price={iceCream.price}
