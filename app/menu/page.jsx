@@ -10,7 +10,7 @@ export default function Menu() {
 
   useEffect(() => {
     async function fetchIceCreams() {
-      const response = await fetch(`/api/iceCreams.json`);
+      const response = await fetch(`${basePath}/api/iceCreams.json`);
       const data = await response.json();
 
       setIceCreams(data);
